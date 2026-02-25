@@ -12,8 +12,8 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
   
-      <StatusBar style="dark" backgroundColor="#000" translucent={false} />
-      <SafeAreaView style={{ flex: 1 }}>
+                <StatusBar style="dark" backgroundColor="#000" translucent={false} />
+      <SafeAreaView style={{ flex: 1 }}  edges={['bottom']}>
   <Stack>
     <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
     <Stack.Screen name="(intro)" options={{ headerShown: false }} />

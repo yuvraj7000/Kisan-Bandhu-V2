@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import icon from '../../context/crop/crops'
 import nameTranslation from '../../context/crop/crops.json'
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 interface Paragraph {
   paragraph_title: string;
@@ -84,6 +85,7 @@ const Crop = () => {
   }
 
   return (
+    <SafeAreaProvider style={{ flex: 1 }}>
     <ScrollView contentContainerStyle={styles.container}>
       <Image
         source={{ uri: cropData.image_url }}
@@ -116,6 +118,7 @@ const Crop = () => {
           )
       }
     </ScrollView>
+    </SafeAreaProvider>
   );
 };
 
@@ -123,6 +126,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 16,
+    marginTop: 10,
     backgroundColor: '#fff',
   },
   image: {
