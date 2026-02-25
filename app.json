@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kisan Bandhu",
     "slug": "app",
-    "version": "1.4.0",
+    "version": "1.7.0",
     "orientation": "portrait",
     "icon": "./assets/icons/applogo.png",
     "scheme": "myapp",
@@ -13,9 +13,8 @@
     },
     "android": {
       "package": "com.AgriNext.KisanBandhu",
-      "versionCode": 4, 
-      "googleServicesFile": "./assets/google-services.json",
-      "networkSecurityConfig": "./network_security_config.xml"
+      "versionCode": 7, 
+      "googleServicesFile": "./assets/google-services.json"
     },
     "web": {
       "bundler": "metro",

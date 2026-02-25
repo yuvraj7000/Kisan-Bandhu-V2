@@ -41,15 +41,16 @@ const RootLayout = () => {
         tabBarLabelStyle: {
           fontSize: 15, 
         },
-        tabBarStyle: {
-          backgroundColor: "#fff",
+tabBarStyle: {
+  backgroundColor: "#fff",
           borderTopWidth: 1,
-          borderTopColor: "#232533",
-          height: 75,
-          paddingTop: 18,
+          borderBottomWidth: 1,
+
+  height: 75,
+  paddingTop: 18,
           justifyContent: 'center',
           
-        },
+},
       }}
     >
       <Tabs.Screen

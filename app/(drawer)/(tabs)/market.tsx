@@ -6,14 +6,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Market = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
+
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View>
           <Dropdown />
          
         </View>
       </ScrollView>
-    </SafeAreaView>
+
   );
 };
 

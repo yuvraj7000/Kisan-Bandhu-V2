@@ -17,7 +17,7 @@
     "featureCard_scheme_heading": "યોજનાઓ",
     "featureCard_scheme_content": "ખેડુતો માટે ઉપલબ્ધ બધી ખાનગી અને સરકારી યોજનાઓ શોધો.",
     "Get Started": "શરૂ કરો",
-    //weather_card 
+    //weather_card
     "loading Weather": "હવામાન લોડ થઈ રહ્યું છે...",
     "Failed to load weather data": "હવામાન ડેટા લોડ કરવામાં નિષ્ફળતા",
     "Reload": "પુનઃલોડ કરો",
@@ -170,8 +170,14 @@
     "Empower farmers with the right tools and information for better productivity and profitability through technological innovation and accessible solutions.": "ટેક્નોલજિકલ નવીનતા અને સુલભ ઉકેલો દ્વારા વધુ ઉત્પાદકતા અને નફાકારકતા માટે યોગ્ય સાધનો અને માહિતી સાથે ખેડુતોને સશક્ત બનાવો.",
     "Contact Us": "સંપર્ક કરો",
     "Latest News": "તાજી સમાચાર",
+    "Loading News": "સમાચાર લોડ થઈ રહ્યા છે",
     "No news available": "કોઈ સમાચાર ઉપલબ્ધ નથી",
     "News": "સમાચાર",
     "Reason – The mandi may be closed or the data may not have been updated by the mandi. Please try again tomorrow.": "કારણ – મંડિ બંધ હોઈ શકે છે અથવા મંડિ દ્વારા ડેટા અપડેટ ન કરવામાં આવ્યો હોય શકે છે. કૃપા કરીને આવતીકાલે ફરી પ્રયાસ કરો.",
+    "Done": "પૂર્ણ થયું",
+    "Information will be updated soon. ! Thank You": "માહિતી જલ્દી અપડેટ કરવામાં આવશે. આભાર!",
+    "This Service is currently unavailable, please try again later": "આ સેવા હાલમાં ઉપલબ્ધ નથી, કૃપા કરીને પછી ફરી પ્રયાસ કરો.",
+    "Language": "ભાષા",
+    "Latest News – Stay informed with curated agricultural news and updates": "તાજા સમાચાર – પસંદ કરેલ કૃષિ સમાચાર અને અપડેટ્સ સાથે માહિતગાર રહો."
   }
 }

@@ -1,8 +1,10 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 
 const Button = ({ handleDone, buttonName }) => {
+  const { t } = useTranslation();
   return (
     <View>
       <TouchableOpacity onPress={handleDone} style={{
@@ -14,7 +16,7 @@ const Button = ({ handleDone, buttonName }) => {
         justifyContent: 'center',
         marginVertical: 10,
       }}>
-        <Text style={{ color: 'white', fontSize: 18 }}>{buttonName}</Text>
+        <Text style={{ color: 'white', fontSize: 18 }}>{t(buttonName)}</Text>
       </TouchableOpacity>
     </View>
   )

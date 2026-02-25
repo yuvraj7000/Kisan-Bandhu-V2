@@ -1,25 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Modal } from 'react-native';
-import statesData from '../context/i18n/state_district.json';
-import Mandi_Data from './mandi_data';
-import { useTranslation } from 'react-i18next';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import statesData from "../context/i18n/state_district.json";
+import Mandi_Data from "./mandi_data";
 
-const CustomDropdown = ({ items, placeholder, onValueChange, value, style }) => {
+const CustomDropdown = ({
+  items,
+  placeholder,
+  onValueChange,
+  value,
+  style,
+}) => {
   const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
 
-  const selectedLabel = items.find(item => item.value === value)?.label || placeholder;
+  const selectedLabel =
+    items.find((item) => item.value === value)?.label || placeholder;
 
   return (
     <View style={[styles.dropdownContainer, style]}>
-      <TouchableOpacity 
-        style={styles.dropdownHeader} 
+      <TouchableOpacity
+        style={styles.dropdownHeader}
         onPress={() => setVisible(!visible)}
       >
-        <Text style={styles.dropdownHeaderText}>
-          {selectedLabel}
-        </Text>
-        <Text style={styles.arrow}>{visible ? '▲' : '▼'}</Text>
+        <Text style={styles.dropdownHeaderText}>{selectedLabel}</Text>
+        <Text style={styles.arrow}>{visible ? "▲" : "▼"}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -60,12 +74,27 @@ const Dropdown = () => {
   const [selectedState, setSelectedState] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [search, setSearch] = useState(false);
+  const [noSelectedDistrict, setNoSelectedDistrict] = useState(false);
   const [key, setKey] = useState(0);
   const [language, setLanguage] = useState(i18n.language);
 
   useEffect(() => {
+    // Load stored values from AsyncStorage on component mount
+    AsyncStorage.multiGet(["selectedState", "selectedDistrict"])
+      .then((result) => {
+        if (result[0][1]) setSelectedState(result[0][1]);
+        if (result[1][1]) setSelectedDistrict(result[1][1]);
+      })
+      .catch((error) => {
+        console.error("Error loading from AsyncStorage:", error);
+      });
+  }, []);
+
+  useEffect(() => {
     setLanguage(i18n.language);
   }, [i18n.language, language]);
+
+  useEffect(() => {}, [language, t]);
 
   const stateItems = statesData.states.map((item) => ({
     label: item.state[language],
@@ -85,6 +114,30 @@ const Dropdown = () => {
     if (selectedState && selectedDistrict) {
       setKey((prevKey) => prevKey + 1);
       setSearch(true);
+
+      // Save selected state and district to AsyncStorage
+      if (selectedState && selectedDistrict) {
+        AsyncStorage.multiSet([
+          ["selectedState", selectedState],
+          ["selectedDistrict", selectedDistrict],
+        ]).catch((error) => {
+          console.error("Error saving to AsyncStorage:", error);
+        });
+      }
+    }
+  };
+
+  const isSearchDisabled = () => {
+    if (!selectedState || !selectedDistrict) {
+      if (noSelectedDistrict == false) {
+        setNoSelectedDistrict(true);
+      }
+      return true;
+    } else {
+      if (noSelectedDistrict == true) {
+        setNoSelectedDistrict(false);
+      }
+      return false;
     }
   };
 
@@ -115,15 +168,25 @@ const Dropdown = () => {
         </>
       )}
 
-      <TouchableOpacity style={styles.button} onPress={handleSearch}>
+      {noSelectedDistrict && (
+        <Text style={styles.infoText}>
+          {t("Select State and District to see Mandi Prices")}
+        </Text>
+      )}
+
+      <TouchableOpacity
+        style={noSelectedDistrict ? styles.disabledButton : styles.button}
+        onPress={handleSearch}
+        disabled={isSearchDisabled()}
+      >
         <Text style={styles.buttonText}>{t("Search")}</Text>
       </TouchableOpacity>
 
       {!search && (
         <View style={styles.notSelected}>
-          <Image 
-            source={require('../assets/icons/no_mandi_data.png')} 
-            style={styles.noimage} 
+          <Image
+            source={require("../assets/icons/no_mandi_data.png")}
+            style={styles.noimage}
           />
           <Text style={styles.notext}>
             {t("Select State and District to see Mandi Prices")}
@@ -133,13 +196,14 @@ const Dropdown = () => {
 
       {search && (
         <Mandi_Data
-          key={key}
+          key={`${key}-${language}`}
           state={selectedState}
           district={selectedDistrict}
           transDistrict={
             statesData.states
               .find((s) => s.state.en === selectedState)
-              ?.districts.find((d) => d.en === selectedDistrict)?.[language] || ''
+              ?.districts.find((d) => d.en === selectedDistrict)?.[language] ||
+            ""
           }
         />
       )}
@@ -154,32 +218,40 @@ const styles = StyleSheet.create({
   label: {
     paddingHorizontal: 15,
     fontSize: 16,
-    color: '#333',
-    fontWeight: 'bold',
+    color: "#333",
+    fontWeight: "bold",
     marginTop: 8,
   },
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     padding: 8,
     borderRadius: 5,
-    alignItems: 'center',
+    alignItems: "center",
     margin: 15,
   },
+  disabledButton: {
+    backgroundColor: "#93aed3",
+    padding: 8,
+    borderRadius: 5,
+    alignItems: "center",
+    margin: 15,
+    marginTop: 2,
+  },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   notSelected: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: 400,
   },
   notext: {
     fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
+    color: "#333",
+    textAlign: "center",
     paddingHorizontal: 20,
   },
   noimage: {
@@ -192,30 +264,30 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   dropdownHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 4,
     padding: 8,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   dropdownHeaderText: {
     fontSize: 16,
-    color: '#333',
+    color: "#333",
   },
   arrow: {
     fontSize: 12,
-    color: '#666',
+    color: "#666",
   },
   dropdownList: {
     maxHeight: 700,
-    height: '80%',
-    backgroundColor: 'white',
+    height: "80%",
+    backgroundColor: "white",
     borderRadius: 4,
     margin: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
@@ -224,16 +296,22 @@ const styles = StyleSheet.create({
   dropdownItem: {
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: "#eee",
   },
   dropdownItemText: {
     fontSize: 18,
-    color: '#333',
+    color: "#333",
+  },
+  infoText: {
+    marginTop: 4,
+    fontSize: 12,
+    color: "#e25151",
+    textAlign: "center",
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
   },
   dropdown: {
     marginHorizontal: 15,

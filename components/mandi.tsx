@@ -5,7 +5,7 @@ import commodity from '../context/i18n/commodity_Translation.json';
 import market_translation from '../context/i18n/market_Translation.json';
 import { useTranslation } from 'react-i18next';
 
-const Mandi = ({ data, transDistrict }) => {
+const Mandi = ({ data, transDistrict, tt }) => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
   const [selectedMarket, setSelectedMarket] = useState(null);

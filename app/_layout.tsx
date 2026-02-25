@@ -11,7 +11,9 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
-      <StatusBar style="light" backgroundColor="#000" translucent={false} />
+  
+      <StatusBar style="dark" backgroundColor="#000" translucent={false} />
+      <SafeAreaView style={{ flex: 1 }}>
   <Stack>
     <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
     <Stack.Screen name="(intro)" options={{ headerShown: false }} />
@@ -19,7 +21,7 @@ export default function RootLayout() {
     <Stack.Screen name="(weather)" options={{ headerShown: false }} />
     <Stack.Screen name="(crop)" options={{ headerShown: false }} />
   </Stack>
-
+  </SafeAreaView>
   </Provider>
   );
 }

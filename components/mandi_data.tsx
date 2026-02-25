@@ -29,8 +29,6 @@ const Mandi_Data = ({ district, state, transDistrict }) => {
 
     const dates = getDateArray();
 
-    const API_KEY = '579b464db66ec23bdd0000010a5d8d330fe04faf5faa8fe9223be9d4';
-
     const UrlByDate = (encodedState, encodedDistrict, encodedDate) => {
         return `${process.env.EXPO_PUBLIC_GOV_API}/35985678-0d79-46b4-9ed6-6f13308a1d24?` +
             `api-key=${process.env.EXPO_PUBLIC_GOV_API_KEY}&format=json&limit=1000&` +
@@ -160,7 +158,7 @@ const Mandi_Data = ({ district, state, transDistrict }) => {
         console.log("mandi response --", response);
 
 
-        return <Mandi data={response} transDistrict={transD} />
+        return <Mandi data={response} transDistrict={transD} tt={t}/>
     }
 
 
@@ -189,7 +187,7 @@ export default Mandi_Data;
 
 const styles = StyleSheet.create({
     animationContainer: {
-        marginTop: 30,
+        // marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -200,6 +198,8 @@ const styles = StyleSheet.create({
     loadingText: {
         fontWeight: '600',
         fontSize: 20,
+        marginHorizontal: 20,
+        textAlign: 'center',
         // color: '#333',
     },
 

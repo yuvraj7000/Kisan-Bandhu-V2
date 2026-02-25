@@ -1,7 +1,7 @@
 {
   "translation": {
     "app_name": "KisanBandhu",
-    "app_slogan": "Empowring Farmers for a Better Tomorrow",
+    "app_slogan": "Empowering Farmers for a Better Tomorrow",
     "Home": "Home",
     "Markets": "Markets",
     "Schemes": "Schemes",
@@ -17,7 +17,7 @@
     "featureCard_scheme_heading": "Schemes",
     "featureCard_scheme_content": "Explore all private and gov schemes available for farmers.",
     "Get Started": "Get Started",
-    //weather_card 
+    //weather_card
     "loading Weather": "Loading Weather ...",
     "Failed to load weather data": "Failed to load weather data",
     "Reload": "Reload",
@@ -161,6 +161,7 @@
     "Key Features": "Key Features",
     "Plant Disease Diagnosis – Upload an image to get AI-driven detection and organic solutions": "Plant Disease Diagnosis – Upload an image to get AI-driven detection and organic solutions",
     "Real-time Mandi Prices – Get daily price updates from all government markets across India": "Real-time Mandi Prices – Get daily price updates from all government markets across India",
+    "Latest News – Stay informed with curated agricultural news and updates": "Latest News – Stay informed with curated agricultural news and updates",
     "16-Day Weather Forecast – Stay updated on rainfall, temperature, and seasonal trends": "16-Day Weather Forecast – Stay updated on rainfall, temperature, and seasonal trends",
     "Active Government & Private Schemes – Find subsidies, loans, and schemes for farmers": "Learn about Active Government & Private Schemes – Find subsidies, loans, and schemes for farmers",
     "Comprehensive Crop Information – Learn about different crops, best practices, and farming techniques": "Comprehensive Crop Information – Learn about different crops, best practices, and farming techniques",
@@ -169,8 +170,14 @@
     "Our Mission": "Our Mission",
     "Empower farmers with the right tools and information for better productivity and profitability through technological innovation and accessible solutions.": "Empower farmers with the right tools and information for better productivity and profitability through technological innovation and accessible solutions.",
     "Contact Us": "Contact Us",
+    "Loading News": "Loading News",
     "News": "News",
+    "Information will be updated soon. ! Thank You": "Information will be updated soon. ! Thank You",
     "Reason – The mandi may be closed or the data may not have been updated by the mandi. Please try again tomorrow.": "Reason – The mandi may be closed or the data may not have been updated by the mandi. Please try again tomorrow.",
-    
+
+    //extras
+    "Done": "Done",
+    "This Service is currently unavailable, please try again later": "This Service is currently unavailable, please try again later",
+    "Language": "Language"
   }
 }

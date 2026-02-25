@@ -154,7 +154,8 @@ const Weather_card = () => {
 
 const styles = StyleSheet.create({
   weather: {
-    width: 350,
+    width: "100%",
+    maxWidth: 450,
     height: 160,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -254,7 +255,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   animationContainer: {
-    width: 350,
+    width: "100%",
+    maxWidth: 450,
     height: 160,
     backgroundColor: 'white',
     borderRadius: 10,

@@ -92,6 +92,7 @@ const DiagnoseHistory = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.header}></View>
       <Text style={styles.title}>{t("Diagnose History")}</Text>
       {history.length > 0 ? (
         history.map((val, index) => (
@@ -120,12 +121,16 @@ const DiagnoseHistory = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderTopColor: '#DDD',
+     borderTopColor: '#DDD',
     borderTopWidth: 2,
-    padding: 10,
-    width: 370,
+    paddingTop: 15,
+    paddingBottom: 15,
+    width: '100%',
+    maxWidth: 450,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    minWidth: 300,
     marginTop: 10,
-    backgroundColor: '#F5F5F5',
   },
   title: {
     fontSize: 20,
@@ -182,7 +187,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#888',
     textAlign: 'center',
-    marginTop: 20,
   },
 });
 

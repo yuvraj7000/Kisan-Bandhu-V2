@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import icon from '../../context/crop/crops'
 import nameTranslation from '../../context/crop/crops.json'
+import { useNavigation } from '@react-navigation/native';
 
 interface Paragraph {
   paragraph_title: string;
@@ -24,6 +25,8 @@ const Crop = () => {
   const [cropData, setCropData] = useState<CropData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const navigation = useNavigation();
 
 
   useEffect(() => {
@@ -50,9 +53,8 @@ const Crop = () => {
     return (
       <View style={styles.loadcontainer}>
         <ActivityIndicator size="large" color="#0000ff" />
-        <Text style={styles.loadingtext}>{t("Loading Crop")}</Text>
         <Image source={icon[name]} style={styles.icon} />
-
+        <Text style={styles.loadingtext}>{t("Loading Crop")}</Text>
       </View>
     );
   }
@@ -60,10 +62,11 @@ const Crop = () => {
   if (error) {
     return (
       <View style={styles.loadcontainer}>
-
-        <Text style={styles.faildetext}>{t("Failed to Load Crop")}</Text>
         <Image source={icon[name]} style={styles.icon} />
-
+        <Text style={styles.loadingtext} >{t("Information will be updated soon. ! Thank You")}</Text>
+        <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()}>
+          <Text style={styles.choiceText}>{t("Back")}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -71,8 +74,11 @@ const Crop = () => {
   if (!cropData) {
     return (
       <View style={styles.loadcontainer}>
-        <Text style={styles.loadingtext} >{t("Crop data not found")}</Text>
         <Image source={icon[name]} style={styles.icon} />
+        <Text style={styles.loadingtext} >{t("Information will be updated soon. ! Thank You")}</Text>
+        <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()}>
+          <Text style={styles.choiceText}>{t("Back")}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -99,6 +105,16 @@ const Crop = () => {
           </Text>
         </View>
       ))}
+      {
+          !cropData.paragraphs.length && (
+            <View>
+               <Text style={styles.loadingtext} >{t("Information will be updated soon. ! Thank You")}</Text>
+        <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()}>
+          <Text style={styles.choiceText}>{t("Back")}</Text>
+        </TouchableOpacity>
+            </View>
+          )
+      }
     </ScrollView>
   );
 };
@@ -114,6 +130,20 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 8,
     marginBottom: 20,
+  },
+  backButton: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    marginHorizontal: 80,
+    marginTop:20,
+    alignItems: 'center',
+  },
+  choiceText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '500',
   },
   title: {
     fontSize: 28,
@@ -156,10 +186,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   loadingtext: {
+    margin: 20,
     fontSize: 20,
     fontWeight: '600',
     color: '#333',
-    marginTop: 10,
+    textAlign: 'center',
+    marginBottom: 0
   },
   icon: {
     width: 100,

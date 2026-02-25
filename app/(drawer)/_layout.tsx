@@ -52,14 +52,14 @@ export default function Layout() {
           name="about" 
           options={{
             drawerLabel: () => <DrawerLabel label="About Us" icon="info"/>,
-            title: 'About Us',
+            title: t('About Us'),
           }}
         />
         <Drawer.Screen
           name="privacy" 
           options={{
             drawerLabel: () => <DrawerLabel label="Privacy Policy" icon="info"/>,
-            title: 'Privacy Policy',
+            title: t('Privacy Policy'),
           }}
         />
         {/* <Drawer.Screen
@@ -73,7 +73,7 @@ export default function Layout() {
           name="language" 
           options={{
             drawerLabel: () => <DrawerLabel label="Select Language" icon="info"/>,
-            title: 'Language',
+            title: t('Language'),
           }}
         />
       </Drawer>

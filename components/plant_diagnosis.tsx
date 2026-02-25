@@ -7,11 +7,13 @@ import LottieView from 'lottie-react-native';
 import { useTranslation } from 'react-i18next';
 import languages from '../context/i18n/language.json';
 import saveHistory from '../context/diagnoseHistory.ts';
+import { useNavigation } from '@react-navigation/native';
 
 const PlantDiagnosis = ({ imageUri, setImage }) => {
   const { t, i18n } = useTranslation();
-
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+  const [failed, isFailed] = useState(false);
   const [response, setResponse] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const animation = useRef<LottieView>(null);
@@ -56,6 +58,8 @@ const PlantDiagnosis = ({ imageUri, setImage }) => {
     } catch (error) {
       console.error('Error:', error);
       setLoading(false);
+      isFailed(true);
+
     }
   };
 
@@ -88,7 +92,7 @@ const PlantDiagnosis = ({ imageUri, setImage }) => {
         <Text>No image selected</Text>
       )}
 
-      <View style={styles.choiceContainer}>
+      {!failed && <View style={styles.choiceContainer}>
         <TouchableOpacity style={styles.choiceButton} onPress={handleRightChoice}>
           <Text style={styles.choiceText}>{t("See Diagnose")}</Text>
         </TouchableOpacity>
@@ -96,6 +100,16 @@ const PlantDiagnosis = ({ imageUri, setImage }) => {
           <Text style={styles.anotherText}>{t("choose another image")}</Text>
         </TouchableOpacity>
       </View>
+      }
+      {
+        failed && 
+        <View>
+        <Text style={styles.failedText}>{t("This Service is currently unavailable, please try again later")}</Text>
+        <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()}>
+          <Text style={styles.choiceText}>{t("Back")}</Text>
+        </TouchableOpacity>   
+        </View>
+      }
 
       {/* Full Screen Image Modal */}
       <Modal
@@ -156,6 +170,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     minWidth: 100,
     alignItems: 'center',
+  },
+  backButton: {
+    backgroundColor: '#007BFF',
+    padding: 12,
+    borderRadius: 8,
+    marginHorizontal: 80,
+    marginTop:20,
+    alignItems: 'center',
+  },
+  failedText: {
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: 20,
+    paddingHorizontal: 20,
   },
   choiceText: {
     color: '#fff',

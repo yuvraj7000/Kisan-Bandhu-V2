@@ -27,6 +27,7 @@ export default Market_card;
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
+    width: '100%',
     borderRadius: 10,
     backgroundColor: '#70BDE6',
     alignItems: 'center',
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    width: 350,
+    width: '100%',
+    maxWidth: 450,
     height: 140,
     borderRadius: 10,
     backgroundColor: '#70BDE6',
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
   link: {
     color: 'white',
     fontSize: 16,
+    textAlign: 'center',
     fontWeight: 'bold',
   },
 });

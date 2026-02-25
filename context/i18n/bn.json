@@ -17,7 +17,7 @@
     "featureCard_scheme_heading": "যোজনা",
     "featureCard_scheme_content": "সরকারি ও বেসরকারি সমস্ত কৃষি যোজনা এক্সপ্লোর করুন।",
     "Get Started": "শুরু করুন",
-    //weather_card 
+    //weather_card
     "loading Weather": "আবহাওয়ার তথ্য লোড হচ্ছে ...",
     "Failed to load weather data": "আবহাওয়ার তথ্য লোড করতে ব্যর্থ",
     "Reload": "পুনরায় লোড করুন",
@@ -171,7 +171,13 @@
     "Contact Us": "যোগাযোগ করুন",
     "No news available": "কোনও খবর পাওয়া যায়নি",
     "Latest News": "সর্বশেষ সংবাদ",
+    "Loading News": "সংবাদ লোড হচ্ছে",
     "News": "সংবাদ",
     "Reason – The mandi may be closed or the data may not have been updated by the mandi. Please try again tomorrow.": "কারণ – মণ্ডি বন্ধ থাকতে পারে বা মণ্ডি দ্বারা তথ্য আপডেট করা না হতে পারে। দয়া করে আগামীকাল আবার চেষ্টা করুন।",
+    "Done": "সম্পন্ন হয়েছে",
+    "Information will be updated soon. ! Thank You": "তথ্য শীঘ্রই আপডেট করা হবে। ধন্যবাদ!",
+    "This Service is currently unavailable, please try again later": "এই পরিষেবাটি বর্তমানে উপলব্ধ নয়, অনুগ্রহ করে পরে আবার চেষ্টা করুন।",
+    "Language": "ভাষা",
+    "Latest News – Stay informed with curated agricultural news and updates": "সর্বশেষ খবর – বাছাই করা কৃষি সংবাদ এবং আপডেটের মাধ্যমে আপডেট থাকুন।"
   }
 }
