@@ -12,7 +12,7 @@ expo-env.d.ts
 # Native
 .kotlin/
 *.orig.*
-*.jks
+# *.jks
 *.p8
 *.p12
 *.key
@@ -42,7 +42,7 @@ app-example
 /ios
 /android
 
-credentials.json
-*.jks
-*.keystore
-google-services.json
+# credentials.json
+# *.jks
+# *.keystore
+# google-services.json
